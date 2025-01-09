@@ -1,0 +1,42 @@
+// Imports --------------------------------------------
+import express from 'express';
+import morgan from 'morgan';
+import mainRouter from './api/routes/routes.js';
+import { config } from 'dotenv';
+import { globalErrorHandler } from './api/controllers/error.js';
+import { AppError } from './api/utils/appError.js';
+import { log, updateSummaryFile } from '@dips/api-log';
+
+// Express
+const app = express();
+
+// Load Environment
+config();
+
+// Express JSON
+app.use(express.json());
+
+// Url encoded
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+// Middleware morgan
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+// Routers --------------------------------------------
+// Mount Router
+app.use('/sibs', mainRouter);
+
+app.all('*', (req, res, next) => {
+  log(`Can not find ${req.originalUrl} on this server!`, 'error');
+  next(new AppError(`Can not find ${req.originalUrl} on this server!`, 404));
+});
+
+app.use(globalErrorHandler);
+
+export default app;
