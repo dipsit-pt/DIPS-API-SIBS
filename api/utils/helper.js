@@ -25,9 +25,7 @@ export const getEnvVars = (keys = []) => {
 // POST Data Function --------------------------------------------
 export async function postData(options) {
   // Define Headers
-  let headers = {
-    'Content-Type': 'application/json',
-  };
+  let headers = {};
 
   // Check Headers
   if (options.hasOwnProperty('headers')) {
@@ -51,7 +49,6 @@ export async function postData(options) {
   const response = await fetch(options.url, {
     // *GET, POST, PUT, DELETE, etc.
     method: 'POST',
-
     mode: 'cors',
     cache: 'no-cache',
     credentials: 'same-origin',
