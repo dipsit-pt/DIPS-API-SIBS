@@ -1,5 +1,6 @@
 // Requires --------------------------------------------
 import { config } from 'dotenv';
+import { AppError } from './appError.js';
 
 // Config
 config();
@@ -24,40 +25,24 @@ export const getEnvVars = (keys = []) => {
 
 // POST Data Function --------------------------------------------
 export async function postData(options) {
-  // Define Headers
-  let headers = {};
+  const headers = options.headers || {};
+  const body = options.body ? JSON.stringify(options.body) : undefined;
 
-  // Check Headers
-  if (options.hasOwnProperty('headers')) {
-    // Iterate Headers
-    Object.entries(options.headers).forEach(([key, value]) => {
-      // Add Headers
-      headers[key] = value;
-    });
-  }
-
-  // Define Body
-  let body;
-
-  // Check Body
-  if (options.hasOwnProperty('body')) {
-    // Stringify Body
-    body = JSON.stringify(options.body);
-  }
-
-  // Get Data Fetch
   const response = await fetch(options.url, {
-    // *GET, POST, PUT, DELETE, etc.
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
     credentials: 'same-origin',
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
-
-    headers: headers,
-    body: body, // body data type must match "Content-Type" header
+    headers,
+    body,
   });
 
-  return response.json(); // parses JSON response into native JavaScript objects
+  if (!response.ok) {
+    const errorBody = await response.json().catch(() => ({}));
+    throw new AppError(`Request failed with status ${response.status}: ${response.statusText}`, response.status);
+  }
+
+  return response.json();
 }
