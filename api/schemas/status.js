@@ -7,7 +7,7 @@ const headers = z
     'content-type': z.literal('application/json').optional(),
     'content-length': z.string().optional(),
     'x-ibm-client-id': z.string(),
-    authorization: z.string().refine((val) => val.startsWith('Digest '), {
+    authorization: z.string().refine((val) => val.startsWith('Bearer '), {
       message: 'Needs an Authorization token',
     }),
     accept: z.literal('application/json').optional(),
@@ -22,7 +22,7 @@ const params = z.object({
 
 // Object endpoints schemas --------------------------------------------
 export const endpoints = {
-  generate: {
+  status: {
     method: 'POST',
     hasHeaders: headers,
     hasParams: params,
