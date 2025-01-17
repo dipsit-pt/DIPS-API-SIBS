@@ -16,15 +16,16 @@ const headers = z
   .strict();
 
 // Define params
-const params = z.object({
-  transactionID: z.string(),
-});
+const params = z
+  .object({
+    transactionID: z.string(),
+  })
+  .strict();
 
 // Object endpoints schemas --------------------------------------------
 export const endpoints = {
   purchase: {
     method: 'POST',
-    hasParams: params,
     hasHeaders: headers,
     hasBody: z
       .object({
@@ -33,5 +34,6 @@ export const endpoints = {
           .regex(/^351#[0-9]{9}$/, { message: "CustomerPhone must match the pattern '351#[0-9]{9}'" }),
       })
       .strict(),
+    hasParams: params,
   },
 };
