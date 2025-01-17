@@ -1,11 +1,11 @@
 // Imports --------------------------------------------
-import { endpoints } from '../schemas/payments.js';
+import { endpoints } from '../schemas/checkout.js';
 import { validatePart } from '../utils/validateReq.js';
 import { AppError } from '../utils/appError.js';
 
 // Validate Request --------------------------------------------
-export const validate = (req, res, next) => {
-  const option = req.url.split('/')[1].toLowerCase();
+export const validateCheckout = (req, res, next) => {
+  const option = req.url.split('/').pop().toLowerCase();
 
   // Extract vars from req
   const { body, headers } = req;
