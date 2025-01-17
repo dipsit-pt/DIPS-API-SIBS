@@ -7,12 +7,13 @@ const { SIBS_URL } = getEnvVars(['SIBS_URL']);
 
 // Create checkout --------------------------------------------
 export const createCheckoutModel = async (req, res) => {
+  let { headers } = req;
+
+  console.log(headers);
   // Define options request
   const options = {
     url: `${SIBS_URL}/payments`,
     headers: {
-      Authorization: req.headers.authorization,
-      'X-IBM-Client-Id': req.headers['x-ibm-client-id'],
       'content-type': 'application/json',
       accept: 'application/json',
     },
