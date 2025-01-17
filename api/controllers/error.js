@@ -1,5 +1,9 @@
+// Imports --------------------------------------------
+import { log } from '@dips/api-log';
+
 // Dev Environment --------------------------------------------
 const sendErrorDev = (err, res) => {
+  log(`${err.message}`, 'error');
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
