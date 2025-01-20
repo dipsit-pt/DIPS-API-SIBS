@@ -1,4 +1,4 @@
-// Requires --------------------------------------------
+// Import --------------------------------------------
 import { config } from 'dotenv';
 import { AppError } from './appError.js';
 
@@ -6,7 +6,6 @@ import { AppError } from './appError.js';
 config();
 
 // Functions --------------------------------------------
-
 // Get Environment Variables --------------------------------------------
 export const getEnvVars = (keys = []) => {
   //If type is diferent than Array
