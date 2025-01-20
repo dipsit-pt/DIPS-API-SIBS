@@ -16,6 +16,9 @@ config();
 // Express JSON
 app.use(express.json());
 
+// Webhook Text SIBS
+app.use(express.text());
+
 // Url encoded
 app.use(
   express.urlencoded({
