@@ -22,7 +22,7 @@ const sendErrorProd = (err, res) => {
     });
   } else {
     // Programming or unknown error: don't leak details
-    console.error('ERROR 💥', err);
+    log(`ERROR 💥 ${err.message}`, 'error');
     res.status(500).json({
       status: 'error',
       message: 'Something went very wrong!',
@@ -34,5 +34,11 @@ const sendErrorProd = (err, res) => {
 export const globalErrorHandler = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
-  sendErrorDev(err, res);
+  err.message = err.message || 'An unexpected error occurred';
+
+  if (process.env.NODE_ENV === 'development') {
+    sendErrorDev(err, res);
+  } else {
+    sendErrorProd(err, res);
+  }
 };
