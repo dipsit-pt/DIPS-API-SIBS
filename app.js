@@ -30,7 +30,7 @@ app.use(
 if (process.env.NODE_ENV === 'development') {
   console.log(`Environment: ${process.env.NODE_ENV}`);
   app.use(morgan('dev'));
-}
+} else if (process.env.NODE_ENV === 'production') console.log(`Environment: ${process.env.NODE_ENV}`);
 
 // Routers --------------------------------------------
 // Mount Router
