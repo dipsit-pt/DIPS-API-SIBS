@@ -36,8 +36,8 @@ export const webhookModel = async (req, res) => {
   };
 
   // POST DATA
-  const post = await postData(options);
-  log(`TransactionId: ${data.transactionID}`, 'info');
+  // const post = await postData(options);
+  // log(`TransactionId: ${data.transactionID}`, 'info');
 
   // Define de return Object
   const returnData = {
