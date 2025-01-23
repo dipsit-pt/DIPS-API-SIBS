@@ -3,11 +3,18 @@ import { validateCheckout } from '../middlewares/checkout.js';
 import { validateMbway } from '../middlewares/mbway.js';
 import { validateReference } from '../middlewares/reference.js';
 import { validateStatus } from '../middlewares/status.js';
+import { validateCard } from '../middlewares/card.js';
 import { Router } from 'express';
 const router = Router();
 
 // Controller ----------------------------------------
-import { transactionStatus, createCheckout, createMBWay, createReference } from '../controllers/payments.js';
+import {
+  transactionStatus,
+  createCheckout,
+  createMBWay,
+  createReference,
+  createCard,
+} from '../controllers/payments.js';
 
 // Routes --------------------------------------------
 // Get Status
@@ -21,5 +28,8 @@ router.post('/:transactionID/mbway/purchase', validateMbway, createMBWay);
 
 // Reference Generate
 router.post('/:transactionID/reference/generate', validateReference, createReference);
+
+// Card Create
+router.post('/:transactionID/card/purchase', validateCard, createCard);
 
 export default router;

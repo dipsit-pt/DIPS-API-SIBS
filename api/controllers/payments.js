@@ -2,6 +2,7 @@
 import { createMbwayModel } from '../models/mbway.js';
 import { createCheckoutModel } from '../models/payments.js';
 import { createReferenceModel } from '../models/reference.js';
+import { createCardModel } from '../models/card.js';
 import { getTransactionStatus } from '../models/status.js';
 import { catchAsync } from '../utils/catchAsync.js';
 
@@ -36,6 +37,15 @@ export const createMBWay = catchAsync(async (req, res, next) => {
 export const createReference = catchAsync(async (req, res, next) => {
   // Call Model Function
   const data = await createReferenceModel(req);
+
+  // Send Data
+  res.json({ data });
+});
+
+// Create Card --------------------------------------------
+export const createCard = catchAsync(async (req, res, next) => {
+  // Call Model Function
+  const data = await createCardModel(req);
 
   // Send Data
   res.json({ data });
