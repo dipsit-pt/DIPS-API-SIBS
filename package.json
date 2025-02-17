@@ -2,7 +2,7 @@
   "name": "@dips/api-sibs",
   "version": "1.0.0",
   "description": "Reusable module for SIBS API",
-  "main": "index.js",
+  "main": "app.js",
   "types": "declaration.d.ts",
   "type": "module",
   "scripts": {
