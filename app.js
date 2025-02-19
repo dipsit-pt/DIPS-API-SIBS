@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Routers --------------------------------------------
 // Mount Router
-app.use('/sibs', mainRouter);
+app.use('/', mainRouter);
 
 app.all('*', (req, res, next) => {
   log(`Can not find ${req.originalUrl} on this server!`, 'error');
