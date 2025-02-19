@@ -7,8 +7,6 @@ import { AppError } from '../utils/appError.js';
 export const validateStatus = (req, res, next) => {
   const option = req.url.split('/').pop().toLowerCase();
 
-  console.log(req.headers);
-
   // Extract vars from req
   const { headers, params } = req;
 
