@@ -1,0 +1,8 @@
+.env file:
+
+PORT=
+HOST=
+NODE_ENV=development
+SIBS_URL=
+SIBS_TERMINAL_ID=
+SIBS_SECRET_KEY=
