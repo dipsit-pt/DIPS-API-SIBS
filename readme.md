@@ -138,3 +138,31 @@ For more details, visit the [SIBS API Documentation](https://www.pay.sibs.com/do
 ## 🟪 **Insomnia API Testing**
 
 [Insomnia Collection](https://drive.google.com/file/d/1byrR3lA_EKvD2cCgoKx6IopNRvGiQ7Ru/view?usp=drive_link)
+
+## 🔌 Required Plugins
+
+To ensure smooth API testing, install the following Insomnia plugins:
+
+| Plugin Name                        | Description                                            |
+| ---------------------------------- | ------------------------------------------------------ |
+| `insomnia-plugin-customtimestamp`  | Generates custom timestamps for requests.              |
+| `insomnia-plugin-fake`             | Generates fake data for testing.                       |
+| `insomnia-plugin-get-access-token` | Helps with authentication by retrieving access tokens. |
+| `insomnia-plugin-regex`            | Enables regex-based operations in requests.            |
+| `insomnia-plugin-save-variables`   | Stores and manages environment variables.              |
+| `insomnia-plugin-utils`            | Provides additional utility functions for requests.    |
+
+### 📌 Installation
+
+1. Open **Insomnia**.
+2. Go to **Preferences** → **Plugins**.
+3. Search for each plugin by name and install them.
+
+## 🚀 Usage
+
+1. Import the Insomnia collection (`.json` file).
+2. Set up environment variables if needed.
+3. Ensure the required plugins are installed.
+4. Start testing your API requests.
+
+---
