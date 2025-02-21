@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dips/api-log": "github:dipsit-pt/DIPS-API-LOG",
+    "@dips/api-log": "https://github.com/dipsit-pt/DIPS-API-LOG.git",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",

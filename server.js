@@ -9,5 +9,5 @@ const host = process.env.HOST;
 //Listen app --------------------------------------------
 app.listen(port, () => {
   log(`Server live on ${host}:${port}. 🚀🚀🚀`, 'info');
-  console.log(`Server live on ${host}:${port}.`);
+  console.log(`Server live on ${host}:${port}. 🚀🚀🚀`);
 });
