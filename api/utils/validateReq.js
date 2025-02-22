@@ -1,5 +1,4 @@
 // Imports --------------------------------------------
-import { log } from '@dips/api-log';
 
 // Reusable function to validate parts of the request --------------------------------------------
 
@@ -10,7 +9,6 @@ export const validatePart = (requestPart, schema, partName) => {
   // If validation fails, log the error and return a response object
   if (!validation.success) {
     // Log the specific part name (params, headers, or body)
-    log(`Invalid ${partName}`, 'error');
 
     const errors =
       partName === 'body' || 'headers' || 'query' ? { errors: validation.error?.errors || [] } : {};

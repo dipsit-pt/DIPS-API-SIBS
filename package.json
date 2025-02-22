@@ -2,20 +2,11 @@
   "name": "@dips/api-sibs",
   "version": "1.0.0",
   "description": "Reusable module for SIBS API",
-  "main": "app.js",
+  "main": "index.js",
   "types": "declaration.d.ts",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch .env --watch . server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@dips/api-log": "https://github.com/dipsit-pt/DIPS-API-LOG.git",
     "cors": "^2.8.5",
-    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "morgan": "^1.10.0",

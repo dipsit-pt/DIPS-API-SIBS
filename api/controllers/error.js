@@ -1,9 +1,7 @@
 // Imports --------------------------------------------
-import { log } from '@dips/api-log';
 
 // Dev Environment --------------------------------------------
 const sendErrorDev = (err, res) => {
-  log(`${err.message}`, 'error');
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
@@ -22,7 +20,6 @@ const sendErrorProd = (err, res) => {
     });
   } else {
     // Programming or unknown error: don't leak details
-    log(`ERROR 💥 ${err.message}`, 'error');
     res.status(500).json({
       status: 'error',
       message: 'Something went very wrong!',

@@ -1,1 +1,1 @@
-declare module "@dips/api-sibs";
+declare module "@DIPS/API-SIBS";
