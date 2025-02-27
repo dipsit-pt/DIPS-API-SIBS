@@ -31,18 +31,16 @@ const customerSchema = z.object({
 });
 
 // Definde headers
-const headers = z
-  .object({
-    'content-type': z.literal('application/json').optional(),
-    'content-length': z.string().optional(),
-    'x-ibm-client-id': z.string(),
-    authorization: z.string().refine((val) => val.startsWith('Bearer '), {
-      message: 'Needs an Authorization token',
-    }),
-    accept: z.literal('application/json').optional(),
-    host: z.string().optional(),
-  })
-  .strict();
+const headers = z.object({
+  'content-type': z.literal('application/json').optional(),
+  'content-length': z.string().optional(),
+  'x-ibm-client-id': z.string(),
+  authorization: z.string().refine((val) => val.startsWith('Bearer '), {
+    message: 'Needs an Authorization token',
+  }),
+  accept: z.literal('application/json').optional(),
+  host: z.string().optional(),
+});
 
 // Object endpoints schemas --------------------------------------------
 export const endpoints = {
