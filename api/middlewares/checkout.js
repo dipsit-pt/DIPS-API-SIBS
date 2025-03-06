@@ -5,6 +5,7 @@ import { AppError } from '../utils/appError.js';
 
 // Validate Request --------------------------------------------
 export const validateCheckout = (req, res, next) => {
+  console.log('validation checkout');
   const option = req.url.split('/').pop().toLowerCase();
 
   // Extract vars from req
