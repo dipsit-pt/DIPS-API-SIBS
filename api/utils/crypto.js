@@ -1,4 +1,5 @@
 // Import --------------------------------------------
+import { log } from '@dips/api-log';
 import crypto from 'crypto';
 
 // Decrypt Message
@@ -26,5 +27,6 @@ export const decryptMessage = async (message, authTag, secretKey, iv) => {
     return decrypted;
   } catch (e) {
     console.log(e);
+    log(JSON.stringify(e, null, 2), 'error');
   }
 };
