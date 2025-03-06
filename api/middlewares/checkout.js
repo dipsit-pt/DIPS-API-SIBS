@@ -14,6 +14,9 @@ export const validateCheckout = (req, res, next) => {
   const { hasHeaders, hasBody } = endpoints[option];
 
   // Validate Headers
+  console.log('headers');
+  console.log(headers);
+  
   const headerError = validateAndHandle(headers, hasHeaders, 'headers');
   if (headerError) return next(headerError);
 
