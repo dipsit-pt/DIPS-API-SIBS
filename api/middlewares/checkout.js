@@ -13,6 +13,9 @@ export const validateCheckout = (req, res, next) => {
   // Exists then get the variables from endpoints object (Zod)
   const { hasHeaders, hasBody } = endpoints[option];
 
+  console.log('headers');
+  console.log(headers);
+
   // Validate Headers
   const headerError = validateAndHandle(headers, hasHeaders, 'headers');
   if (headerError) return next(headerError);
