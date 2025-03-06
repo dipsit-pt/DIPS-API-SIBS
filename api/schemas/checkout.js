@@ -41,8 +41,7 @@ const headers = z
     }),
     accept: z.literal('application/json').optional(),
     host: z.string().optional(),
-  })
-  .strict();
+  });
 
 // Object endpoints schemas --------------------------------------------
 export const endpoints = {
