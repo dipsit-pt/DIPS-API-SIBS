@@ -60,8 +60,6 @@ export async function getData(options) {
     headers,
   });
 
-  console.log(response);
-
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
     throw new AppError(`Request failed with status ${response.status}: ${response.statusText}`, response.status);
