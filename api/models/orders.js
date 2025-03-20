@@ -40,9 +40,9 @@ export const createOrderModel = async (req, res) => {
 export const webhookModel = async (req, res) => {
   // Get Data from Request
   const message = req.body;
-  const authTag = SIBS_AUTH_TAG;
-  const iv = SIBS_INIT_VALUE;
-  const secretKey = SIBS_SECRET_KEY;
+  const authTag = req.headers['x-authentication-tag'];
+  const iv = req.headers['x-initialization-vector'];
+  const secretKey = req.headers['secret'];
   let dataParsed;
 
   console.log(message);
