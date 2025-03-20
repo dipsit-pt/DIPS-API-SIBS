@@ -42,7 +42,7 @@ export const webhookModel = async (req, res) => {
   const message = req.body;
   const authTag = req.headers['x-authentication-tag'];
   const iv = req.headers['x-initialization-vector'];
-  const secretKey = req.headers['Secret'];
+  const secretKey = SIBS_SECRET_KEY;
   let dataParsed;
 
   console.log('headers');
