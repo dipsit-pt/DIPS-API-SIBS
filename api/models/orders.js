@@ -5,8 +5,7 @@ import { AppError } from '../utils/appError.js';
 import { log } from '@dips/api-log';
 
 // Environment variables
-const {SIBS_SECRET_KEY, SIBS_AUTH_TAG, SIBS_INIT_VALUE} = getEnvVars(['SIBS_SECRET_KEY', 'SIBS_AUTH_TAG', 'SIBS_INIT_VALUE']);
-
+const { SIBS_SECRET_KEY, SIBS_AUTH_TAG, SIBS_INIT_VALUE } = getEnvVars(['SIBS_SECRET_KEY', 'SIBS_AUTH_TAG', 'SIBS_INIT_VALUE']);
 
 // Environment variables
 const DIRECTUS_URL = process.env.DIRECTUS_URL;
@@ -46,9 +45,17 @@ export const webhookModel = async (req, res) => {
   const secretKey = SIBS_SECRET_KEY;
   let dataParsed;
 
+  console.log(message);
+  console.log(authTag);
+  console.log(iv);
+  console.log(secretKey);
+
   // Decrypt Message
   //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
   const data = await decryptMessage(message, authTag, secretKey, iv);
+
+  console.log('data');
+  console.log(data);
 
   if (!data) {
     log('ERR_INTERNAL_EMPTY', 'error');
