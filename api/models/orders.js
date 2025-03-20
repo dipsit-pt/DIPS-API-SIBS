@@ -42,13 +42,11 @@ export const webhookModel = async (req, res) => {
   const message = req.body;
   const authTag = req.headers['x-authentication-tag'];
   const iv = req.headers['x-initialization-vector'];
-  const secretKey = req.headers['secret'];
+  const secretKey = req.headers['Secret'];
   let dataParsed;
 
-  console.log(message);
-  console.log(authTag);
-  console.log(iv);
-  console.log(secretKey);
+  console.log('headers');
+  console.log(req.headers);
 
   // Decrypt Message
   //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
