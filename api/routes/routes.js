@@ -5,7 +5,7 @@ const router = express.Router();
 // Router --------------------------------------------
 import paymentsRouter from './payments.js';
 import webhookRouter from './webhook.js';
-import orderRouter from './order.js';
+import ordersRouter from './orders.js';
 
 // Routes --------------------------------------------
 
@@ -16,6 +16,6 @@ router.use('/payments', paymentsRouter);
 router.use('/webhook', webhookRouter);
 
 // Orders - Directus
-router.use('/order', orderRouter);
+router.use('/orders', ordersRouter);
 
 export default router;

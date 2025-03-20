@@ -1,6 +1,6 @@
 // Imports --------------------------------------------
 import { catchAsync } from '../utils/catchAsync.js';
-import { getAllTransactionsModel, createOrderModel } from '../models/order.js';
+import { getAllTransactionsModel, createOrderModel, webhookModel } from '../models/orders.js';
 
 // Get All Transaction --------------------------------------------
 export const getAllTransactions = catchAsync(async (req, res, next) => {
@@ -18,4 +18,13 @@ export const createOrder = catchAsync(async (req, res, next) => {
 
   // Send Data
   res.json({ data });
+});
+
+// Webhook --------------------------------------------
+export const webhook = catchAsync(async (req, res, next) => {
+  // Call the Model Function
+  const data = await webhookModel(req);
+
+  // Send Data
+  res.json(data);
 });
