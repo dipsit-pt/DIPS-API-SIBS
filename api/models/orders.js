@@ -45,8 +45,20 @@ export const webhookModel = async (req, res) => {
   const secretKey = SIBS_SECRET_KEY;
   let dataParsed;
 
-  console.log('headers');
-  console.log(req.headers);
+  console.log('message');
+  console.log(message);
+
+  console.log('iv');
+  console.log(iv);
+
+  console.log('authTag');
+  console.log(authTag);
+
+  console.log('authTag');
+  console.log(authTag);
+
+  console.log('secretKey');
+  console.log(secretKey);
 
   // Decrypt Message
   //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
@@ -65,13 +77,13 @@ export const webhookModel = async (req, res) => {
     dataParsed = JSON.parse(data);
   } catch (error) {
     log(JSON.stringify(dataParsed, null, 2), 'error');
-    throw new AppError('ERR_INTERNAL_UNPROCESSABLE', 422);
+    throw new AppError('ERR_INTERNAL_PARSE', 422);
   }
 
   if (dataParsed.returnStatus.statusMsg != 'Success') {
     // Check if data success
     log(JSON.stringify(dataParsed, null, 2), 'error');
-    throw new AppError('ERR_INTERNAL_UNPROCESSABLE', 422, dataParsed);
+    throw new AppError('ERR_INTERNAL_NOSUCCESS', 422, dataParsed);
   }
 
   // Success
