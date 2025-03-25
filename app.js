@@ -17,7 +17,7 @@ config();
 app.use(express.json());
 
 // Webhook Text SIBS
-app.use(express.text());
+app.use(express.text({ type: 'text/plain' }));
 
 // Url encoded
 app.use(

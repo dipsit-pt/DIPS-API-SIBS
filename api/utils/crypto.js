@@ -30,3 +30,17 @@ export const decryptMessage = async (message, authTag, secretKey, iv) => {
     log(JSON.stringify(e, null, 2), 'error');
   }
 };
+
+export const decryptWebookMessage = async (message, authTag, secretKey, iv) => {
+  const key = Buffer.from(secretKey, 'base64');
+  const data = Buffer.from(message, 'base64');
+  const tag = Buffer.from(authTag, 'base64');
+  const ivBuf = Buffer.from(iv, 'base64');
+
+  const decipher = crypto.createDecipheriv('aes-256-gcm', key, ivBuf);
+  decipher.setAuthTag(tag);
+
+  const decrypted = Buffer.concat([decipher.update(data), decipher.final()]);
+
+  return decrypted.toString('utf8');
+};
