@@ -1,6 +1,6 @@
 // Imports --------------------------------------------
 import { postData, getData, getEnvVars } from '../utils/helper.js';
-import { decryptWebhookMessage } from '../utils/crypto.js';
+import { decryptMessageWebhook } from '../utils/crypto.js';
 import { AppError } from '../utils/appError.js';
 import { log } from '@dips/api-log';
 
@@ -63,7 +63,7 @@ export const webhookModel = async (req, res) => {
 
     // Decrypt Message
     //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
-    const data = await decryptWebhookMessage(message, authTag, secretKey, iv);
+    const data = await decryptMessageWebhook(message, authTag, secretKey, iv);
 
     console.log('data');
     console.log(data);
