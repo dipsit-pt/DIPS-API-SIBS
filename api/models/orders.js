@@ -1,8 +1,9 @@
 // Imports --------------------------------------------
 import { postData, getData, getEnvVars } from '../utils/helper.js';
-import { decryptWebookMessage } from '../utils/crypto.js';
+import { decryptWebookMessage, decryptMessage } from '../utils/crypto.js';
 import { AppError } from '../utils/appError.js';
 import { log } from '@dips/api-log';
+import { json } from 'express';
 
 // Environment variables
 const { SIBS_SECRET_KEY, SIBS_AUTH_TAG, SIBS_INIT_VALUE } = getEnvVars(['SIBS_SECRET_KEY', 'SIBS_AUTH_TAG', 'SIBS_INIT_VALUE']);
@@ -63,7 +64,7 @@ export const webhookModel = async (req, res) => {
 
     // Decrypt Message
     //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
-    const data = await decryptWebookMessage(message, authTag, secretKey, iv);
+    const data = await decryptMessage(message, authTag, secretKey, iv);
 
     console.log('data');
     console.log(data);
@@ -111,7 +112,8 @@ export const webhookModel = async (req, res) => {
     };
 
     return returnData;
-  } catch (error) {
+  } catch (err) {
     console.error('Decryption error:', err.message);
+    throw new AppError(err.message, 500);
   }
 };
