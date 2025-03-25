@@ -47,28 +47,10 @@ export const webhookModel = async (req, res) => {
     const secretKey = SIBS_SECRET_KEY;
     let dataParsed;
 
-    console.log('message');
-    console.log(message);
-
-    console.log('iv');
-    console.log(iv);
-
-    console.log('authTag');
-    console.log(authTag);
-
-    console.log('authTag');
-    console.log(authTag);
-
-    console.log('secretKey');
-    console.log(secretKey);
-
     // Decrypt Message
-    //const data = JSON.parse(await decryptMessage(message, authTag, secretKey, iv));
     const data = await decryptMessage(message, authTag, secretKey, iv);
 
-    console.log('data');
-    console.log(data);
-
+    // Check Data
     if (!data) {
       log('ERR_INTERNAL_EMPTY', 'error');
       throw new AppError('ERR_INTERNAL_EMPTY', 422);
