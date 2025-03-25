@@ -5,7 +5,6 @@ import { AppError } from '../utils/appError.js';
 
 // Validate Request --------------------------------------------
 export const validateCheckout = (req, res, next) => {
-  console.log('validation checkout');
   const option = req.url.split('/').pop().toLowerCase();
 
   // Extract vars from req
@@ -13,9 +12,6 @@ export const validateCheckout = (req, res, next) => {
 
   // Exists then get the variables from endpoints object (Zod)
   const { hasHeaders, hasBody } = endpoints[option];
-
-  console.log('headers');
-  console.log(headers);
 
   // Validate Headers
   const headerError = validateAndHandle(headers, hasHeaders, 'headers');
