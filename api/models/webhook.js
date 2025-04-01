@@ -43,18 +43,17 @@ export const webhookModel = async (req, res) => {
   log(JSON.stringify(dataParsed, null, 2), 'info');
 
   // Prepare POST
-  const options = {
-    url: 'https://directus.dips.pt/flows/trigger/224f3d6f-d559-4e07-b2b0-5d21bc66d815',
-    headers: {
-      'content-type': `application/json`,
-    },
-    body: dataParsed,
-  };
+  // const options = {
+  //   url: SIBS_API_URL,
+  //   headers: {
+  //     authorization: `Bearer ${SIBS_API_TOKEN}`,
+  //   },
+  //   body: data,
+  // };
 
   // POST DATA
-  const post = await postData(options);
-  console.log(post);
-  //log(`TransactionId: ${data.transactionID}`, 'info');
+  // const post = await postData(options);
+  // log(`TransactionId: ${data.transactionID}`, 'info');
 
   // Define de return Object
   const returnData = {

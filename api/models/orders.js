@@ -74,17 +74,17 @@ export const webhookModel = async (req, res) => {
     log(JSON.stringify(dataParsed, null, 2), 'info');
 
     // Prepare POST
-    // const options = {
-    //   url: SIBS_API_URL,
-    //   headers: {
-    //     authorization: `Bearer ${SIBS_API_TOKEN}`,
-    //   },
-    //   body: data,
-    // };
+    const options = {
+      url: 'https://directus.dips.pt/flows/trigger/224f3d6f-d559-4e07-b2b0-5d21bc66d815',
+      headers: {
+        'content-type': `application/json`,
+      },
+      body: dataParsed,
+    };
 
     // POST DATA
-    // const post = await postData(options);
-    // log(`TransactionId: ${data.transactionID}`, 'info');
+    const post = await postData(options);
+    console.log(post);
 
     // Define de return Object
     const returnData = {
@@ -98,4 +98,22 @@ export const webhookModel = async (req, res) => {
     console.error('Decryption error:', err.message);
     throw new AppError(err.message, 500);
   }
+};
+
+// Update Order --------------------------------------------
+export const updateOrderModel = async (req, res) => {
+  const { body } = req;
+
+  // Extract Id and Orders
+  const { id, orders } = body;
+
+  // Define options request
+  const options = {
+    url: `${DIRECTUS_URL}/items/Transactions`,
+  };
+
+  //Get Data Data
+  //const data = await postData(options);
+
+  return 'success'; // data;
 };
