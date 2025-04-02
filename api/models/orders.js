@@ -39,6 +39,8 @@ export const createOrderModel = async (req, res) => {
 
 // Webhook Model --------------------------------------------
 export const webhookModel = async (req, res) => {
+  let directusBody = {};
+
   try {
     // Get Data from Request
     const message = req.body;
@@ -46,6 +48,7 @@ export const webhookModel = async (req, res) => {
     const iv = req.headers['x-initialization-vector'];
     const secretKey = SIBS_SECRET_KEY;
     let dataParsed;
+    let result;
 
     // Decrypt Message
     const data = await decryptMessage(message, authTag, secretKey, iv);
@@ -59,6 +62,7 @@ export const webhookModel = async (req, res) => {
     // Check if data is json
     try {
       dataParsed = JSON.parse(data);
+      directusBody = dataParsed;
     } catch (error) {
       log(JSON.stringify(dataParsed, null, 2), 'error');
       throw new AppError('ERR_INTERNAL_PARSE', 422);
@@ -66,19 +70,6 @@ export const webhookModel = async (req, res) => {
 
     // Success
     log(JSON.stringify(dataParsed, null, 2), 'info');
-
-    // Prepare POST
-    const options = {
-      url: 'https://directus.dips.pt/flows/trigger/224f3d6f-d559-4e07-b2b0-5d21bc66d815',
-      headers: {
-        'content-type': `application/json`,
-      },
-      body: dataParsed,
-    };
-
-    // POST DATA
-    const post = await postData(options);
-    console.log(post);
 
     // Define de return Object
     const returnData = {
@@ -90,7 +81,21 @@ export const webhookModel = async (req, res) => {
     return returnData;
   } catch (err) {
     console.error('Decryption error:', err.message);
+    directusBody = err.message;
     throw new AppError(err.message, 500);
+  } finally {
+    // Prepare POST
+    const options = {
+      url: 'https://directus.dips.pt/flows/trigger/224f3d6f-d559-4e07-b2b0-5d21bc66d815',
+      headers: {
+        'content-type': `application/json`,
+      },
+      body: directusBody,
+    };
+
+    // POST DATA
+    const post = await postData(options);
+    console.log(post);
   }
 };
 
