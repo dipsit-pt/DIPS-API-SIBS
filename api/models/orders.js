@@ -64,12 +64,6 @@ export const webhookModel = async (req, res) => {
       throw new AppError('ERR_INTERNAL_PARSE', 422);
     }
 
-    if (dataParsed.returnStatus.statusMsg != 'Success') {
-      // Check if data success
-      log(JSON.stringify(dataParsed, null, 2), 'error');
-      throw new AppError('ERR_INTERNAL_NOSUCCESS', 422, dataParsed);
-    }
-
     // Success
     log(JSON.stringify(dataParsed, null, 2), 'info');
 
